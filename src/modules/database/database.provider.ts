@@ -8,12 +8,12 @@ import {
   SEQUELIZE,
   TEST,
 } from 'src/utilities/constants';
-import { UserSubscription } from '../subscriptions/models/user-subscription.model';
-import { UserPlatform } from '../users/models/user-platform.model';
-import { UserProfile } from '../users/models/user-profile.model';
-import { UserRole } from '../users/models/user-role.model';
-import { User } from '../users/models/user.model';
-import { UserCountry } from '../country/models/user-country.model';
+import { UserSubscriptionModel } from '../subscriptions/models/user-subscription.model';
+import { UserPlatformModel } from '../users/models/user-platform.model';
+import { UserProfileModel } from '../users/models/user-profile.model';
+import { UserRoleModel } from '../users/models/user-role.model';
+import { UserModel } from '../users/models/user.model';
+import { CountryModel } from '../country/models/user-country.model';
 
 dotenv.config();
 
@@ -44,13 +44,13 @@ export const databaseProviders = [
         //! Add db models here
         // City,
         // Country,
-        User,
+        UserModel,
         // UserLocation,
         // UserLoginRecord,
-        UserPlatform,
-        UserProfile,
-        UserRole,
-        UserSubscription,
+        UserPlatformModel,
+        UserProfileModel,
+        UserRoleModel,
+        UserSubscriptionModel,
       ]);
 
       // sequelize.addModels([__dirname + '/**/*.model.ts']);
@@ -86,16 +86,16 @@ export const databaseProviders = [
           logger.verbose('Seeding sample location data...');
           // await safeSeed('Regions', Region.seed);
           // await safeSeed('Cities', City.seed);
-          await safeSeed('Countries', UserCountry.seed);
+          await safeSeed('Countries', CountryModel.seed);
           // await safeSeed('UserLocations', UserLocation.seed);
 
           // Seed sample user data
           logger.verbose('Seeding sample user data...');
-          await safeSeed('UserPlatforms', UserPlatform.seed);
-          await safeSeed('UserRoles', UserRole.seed);
-          await safeSeed('Users', User.seed);
-          await safeSeed('UserSubscriptions', UserSubscription.seed);
-          await safeSeed('UserProfiles', UserProfile.seed);
+          await safeSeed('UserPlatforms', UserPlatformModel.seed);
+          await safeSeed('UserRoles', UserRoleModel.seed);
+          await safeSeed('Users', UserModel.seed);
+          await safeSeed('UserSubscriptions', UserSubscriptionModel.seed);
+          await safeSeed('UserProfiles', UserProfileModel.seed);
 
           logger.verbose('Seeding done!');
         } catch (err) {
