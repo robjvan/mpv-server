@@ -14,6 +14,7 @@ import { UserProfileModel } from '../users/models/user-profile.model';
 import { UserRoleModel } from '../users/models/user-role.model';
 import { UserModel } from '../users/models/user.model';
 import { CountryModel } from '../country/models/user-country.model';
+import { VetModel } from '../vets/models/vet.model';
 
 dotenv.config();
 
@@ -44,13 +45,15 @@ export const databaseProviders = [
         //! Add db models here
         // City,
         // Country,
-        UserModel,
+        CountryModel,
         // UserLocation,
         // UserLoginRecord,
+        UserModel,
         UserPlatformModel,
-        UserProfileModel,
         UserRoleModel,
+        UserProfileModel,
         UserSubscriptionModel,
+        VetModel,
       ]);
 
       // sequelize.addModels([__dirname + '/**/*.model.ts']);
