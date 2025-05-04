@@ -1,7 +1,7 @@
-import { UserRole } from '../user-role.model';
+import { UserRoleModel } from '../user-role.model';
 
 export type UserRoleSeedData = {
-  role: Partial<UserRole>;
+  role: Partial<UserRoleModel>;
 };
 
 export const BuildUserRoleSeedData = async (): Promise<UserRoleSeedData[]> => {

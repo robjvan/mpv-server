@@ -6,10 +6,10 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { UserSeedData, BuildUserSeedData } from './seeds/user.seed';
-import { UserRole } from './user-role.model';
+import { UserRoleModel } from './user-role.model';
 
 @Table
-export class User extends Model<User> {
+export class UserModel extends Model<UserModel> {
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
@@ -65,7 +65,7 @@ export class User extends Model<User> {
   })
   newsletter: boolean;
 
-  @ForeignKey(() => UserRole)
+  @ForeignKey(() => UserRoleModel)
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
@@ -75,9 +75,9 @@ export class User extends Model<User> {
   public static async seed() {
     const seedData: UserSeedData[] = await BuildUserSeedData();
 
-    const Users: User[] = [];
+    const Users: UserModel[] = [];
     for (const data of seedData) {
-      const user: User = await User.create(data.user);
+      const user: UserModel = await UserModel.create(data.user);
       Users.push(user);
     }
     return Users[0];

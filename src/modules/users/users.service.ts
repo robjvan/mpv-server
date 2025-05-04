@@ -14,20 +14,20 @@ import { v4 as uuidv4 } from 'uuid';
 import * as bcrypt from 'bcrypt';
 import moment from 'moment';
 
-import { User } from './models/user.model';
+import { UserModel } from './models/user.model';
 import { UpdateUserDto } from './models/dtos/update-user.dto';
-import { UserProfile } from './models/user-profile.model';
-import { UserSubscription } from '../subscriptions/models/user-subscription.model';
+import { UserProfileModel } from './models/user-profile.model';
+import { UserSubscriptionModel } from '../subscriptions/models/user-subscription.model';
 
 @Injectable()
 export class UsersService {
   constructor(
     @Inject(USERS_REPOSITORY)
-    private readonly usersRepo: typeof User,
+    private readonly usersRepo: typeof UserModel,
     @Inject(USER_PROFILES_REPOSITORY)
-    private readonly userProfilesRepo: typeof UserProfile,
+    private readonly userProfilesRepo: typeof UserProfileModel,
     @Inject(USER_SUBSCRIPTIONS_REPOSITORY)
-    private readonly userSubscriptionsRepo: typeof UserSubscription,
+    private readonly userSubscriptionsRepo: typeof UserSubscriptionModel,
   ) {}
 
   /** Logger instance scoped to UsersService for tracking and recording service-level operations and errors. */
@@ -39,7 +39,7 @@ export class UsersService {
     throw new InternalServerErrorException(error, errorMsg);
   }
 
-  public async getAllUsers(): Promise<User[]> {
+  public async getAllUsers(): Promise<UserModel[]> {
     try {
       return await this.usersRepo.findAll();
     } catch (err: any) {
@@ -47,7 +47,7 @@ export class UsersService {
     }
   }
 
-  public async getUserById(id: number): Promise<User> {
+  public async getUserById(id: number): Promise<UserModel> {
     try {
       const result = await this.usersRepo.findOne({ where: { id } });
 
@@ -61,7 +61,10 @@ export class UsersService {
     }
   }
 
-  public async updateUserById(id: number, data: UpdateUserDto): Promise<User> {
+  public async updateUserById(
+    id: number,
+    data: UpdateUserDto,
+  ): Promise<UserModel> {
     try {
       const user = await this.getUserById(id);
 

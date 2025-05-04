@@ -5,7 +5,7 @@ import {
 } from './seeds/user-platform.seed';
 
 @Table
-export class UserPlatform extends Model<UserPlatform> {
+export class UserPlatformModel extends Model<UserPlatformModel> {
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
@@ -22,9 +22,9 @@ export class UserPlatform extends Model<UserPlatform> {
   public static async seed() {
     const seedData: UserPlatformSeedData[] = await BuildUserPlatformSeedData();
 
-    const userPlatforms: UserPlatform[] = [];
+    const userPlatforms: UserPlatformModel[] = [];
     for (const data of seedData) {
-      const userPlatform: UserPlatform = await UserPlatform.create(
+      const userPlatform: UserPlatformModel = await UserPlatformModel.create(
         data.platform,
       );
       userPlatforms.push(userPlatform);

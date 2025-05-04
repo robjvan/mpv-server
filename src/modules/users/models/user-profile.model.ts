@@ -9,11 +9,11 @@ import {
   UserProfileSeedData,
   BuildUserProfileSeedData,
 } from './seeds/user-profile.seed';
-import { User } from './user.model';
-import { UserCountry } from 'src/modules/country/models/user-country.model';
+import { UserModel } from './user.model';
+import { CountryModel } from 'src/modules/country/models/user-country.model';
 
 @Table
-export class UserProfile extends Model<UserProfile> {
+export class UserProfileModel extends Model<UserProfileModel> {
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
@@ -21,7 +21,7 @@ export class UserProfile extends Model<UserProfile> {
   })
   id?: number;
 
-  @ForeignKey(() => User)
+  @ForeignKey(() => UserModel)
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
@@ -53,7 +53,7 @@ export class UserProfile extends Model<UserProfile> {
   })
   avatarUrl?: string;
 
-  @ForeignKey(() => UserCountry)
+  @ForeignKey(() => CountryModel)
   @Column({
     type: DataType.INTEGER,
     allowNull: true,
@@ -63,9 +63,9 @@ export class UserProfile extends Model<UserProfile> {
   public static async seed() {
     const seedData: UserProfileSeedData[] = await BuildUserProfileSeedData();
 
-    const userProfiles: UserProfile[] = [];
+    const userProfiles: UserProfileModel[] = [];
     for (const data of seedData) {
-      const userProfile: UserProfile = await UserProfile.create(
+      const userProfile: UserProfileModel = await UserProfileModel.create(
         data.userProfile,
       );
       userProfiles.push(userProfile);

@@ -5,15 +5,15 @@ import {
   USER_SUBSCRIPTIONS_REPOSITORY,
   USERS_REPOSITORY,
 } from 'src/utilities/constants';
-import { UserRole } from './models/user-role.model';
-import { User } from './models/user.model';
-import { UserProfile } from './models/user-profile.model';
-import { UserSubscription } from '../subscriptions/models/user-subscription.model';
+import { UserRoleModel } from './models/user-role.model';
+import { UserModel } from './models/user.model';
+import { UserProfileModel } from './models/user-profile.model';
+import { UserSubscriptionModel } from '../subscriptions/models/user-subscription.model';
 
 export const usersProviders = [
   {
     provide: USERS_REPOSITORY,
-    useValue: User,
+    useValue: UserModel,
   },
   // {
   //   provide: USER_LOGINRECORDS_REPOSITORY,
@@ -29,14 +29,14 @@ export const usersProviders = [
   // },
   {
     provide: USER_PLATFORMS_REPOSITORY,
-    useValue: UserRole,
+    useValue: UserRoleModel,
   },
   {
     provide: USER_PROFILES_REPOSITORY,
-    useValue: UserProfile,
+    useValue: UserProfileModel,
   },
   {
     provide: USER_SUBSCRIPTIONS_REPOSITORY,
-    useValue: UserSubscription,
+    useValue: UserSubscriptionModel,
   },
 ];

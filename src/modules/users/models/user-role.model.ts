@@ -5,7 +5,7 @@ import {
 } from './seeds/user-role.seed';
 
 @Table
-export class UserRole extends Model<UserRole> {
+export class UserRoleModel extends Model<UserRoleModel> {
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
@@ -22,9 +22,9 @@ export class UserRole extends Model<UserRole> {
   public static async seed() {
     const seedData: UserRoleSeedData[] = await BuildUserRoleSeedData();
 
-    const userRoles: UserRole[] = [];
+    const userRoles: UserRoleModel[] = [];
     for (const data of seedData) {
-      const userRole: UserRole = await UserRole.create(data.role);
+      const userRole: UserRoleModel = await UserRoleModel.create(data.role);
       userRoles.push(userRole);
     }
     return userRoles[0];

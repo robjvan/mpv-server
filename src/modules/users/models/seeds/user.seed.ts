@@ -1,9 +1,9 @@
 import * as bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
-import { User } from '../user.model';
+import { UserModel } from '../user.model';
 
 export type UserSeedData = {
-  user: Partial<User>;
+  user: Partial<UserModel>;
 };
 
 export const BuildUserSeedData = async (): Promise<UserSeedData[]> => {

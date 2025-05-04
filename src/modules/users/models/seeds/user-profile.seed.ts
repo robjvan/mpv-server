@@ -1,7 +1,7 @@
-import { UserProfile } from '../user-profile.model';
+import { UserProfileModel } from '../user-profile.model';
 
 export type UserProfileSeedData = {
-  userProfile: Partial<UserProfile>;
+  userProfile: Partial<UserProfileModel>;
 };
 
 export const BuildUserProfileSeedData = async (): Promise<
