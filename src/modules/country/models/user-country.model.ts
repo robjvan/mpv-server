@@ -1,11 +1,11 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
 import {
-  UserCountrySeedData,
-  BuildUserCountrySeedData,
+  CountryModelSeedData,
+  BuildCountryModelSeedData,
 } from './seeds/user-country.seed';
 
 @Table
-export class UserCountry extends Model<UserCountry> {
+export class CountryModel extends Model<CountryModel> {
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
@@ -26,11 +26,11 @@ export class UserCountry extends Model<UserCountry> {
   isoCode?: string;
 
   public static async seed() {
-    const seedData: UserCountrySeedData[] = await BuildUserCountrySeedData();
+    const seedData: CountryModelSeedData[] = await BuildCountryModelSeedData();
 
-    const Countrys: UserCountry[] = [];
+    const Countrys: CountryModel[] = [];
     for (const data of seedData) {
-      const country: UserCountry = await UserCountry.create(data.country);
+      const country: CountryModel = await CountryModel.create(data.country);
       Countrys.push(country);
     }
     return Countrys[0];

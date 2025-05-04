@@ -1,11 +1,11 @@
-import { UserCountry } from '../user-country.model';
+import { CountryModel } from '../user-country.model';
 
-export type UserCountrySeedData = {
-  country: Partial<UserCountry>;
+export type CountryModelSeedData = {
+  country: Partial<CountryModel>;
 };
 
-export const BuildUserCountrySeedData = async (): Promise<
-  UserCountrySeedData[]
+export const BuildCountryModelSeedData = async (): Promise<
+  CountryModelSeedData[]
 > => {
   return [
     {

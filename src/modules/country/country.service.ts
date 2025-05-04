@@ -10,7 +10,7 @@ import { firstValueFrom } from 'rxjs';
 import { countryToAlpha2 } from 'country-to-iso';
 import * as lookup from 'country-code-lookup';
 
-import { UserCountry } from './models/user-country.model';
+import { CountryModel } from './models/user-country.model';
 import { COUNTRY_REPOSITORY } from 'src/utilities/constants';
 import { AxiosResponse } from 'axios';
 
@@ -18,7 +18,7 @@ import { AxiosResponse } from 'axios';
 export class CountryService {
   constructor(
     @Inject(COUNTRY_REPOSITORY)
-    private readonly countryRepo: typeof UserCountry,
+    private readonly countryRepo: typeof CountryModel,
     private readonly httpService: HttpService,
   ) {}
   /** Logger instance scoped to CountryService for tracking and recording service-level operations and errors. */
@@ -30,7 +30,7 @@ export class CountryService {
     throw new InternalServerErrorException(error, errorMsg);
   }
 
-  public async getCountryById(id: number): Promise<UserCountry> {
+  public async getCountryById(id: number): Promise<CountryModel> {
     try {
       const result = await this.countryRepo.findOne({ where: { id } });
 
@@ -47,7 +47,7 @@ export class CountryService {
     }
   }
 
-  public async getOrCreateRecord(name: string): Promise<UserCountry> {
+  public async getOrCreateRecord(name: string): Promise<CountryModel> {
     try {
       const result = await this.countryRepo.findOne({ where: { name } });
 
