@@ -10,6 +10,7 @@ import {
   BuildUserProfileSeedData,
 } from './seeds/user-profile.seed';
 import { User } from './user.model';
+import { UserCountry } from 'src/modules/country/models/user-country.model';
 
 @Table
 export class UserProfile extends Model<UserProfile> {
@@ -52,18 +53,12 @@ export class UserProfile extends Model<UserProfile> {
   })
   avatarUrl?: string;
 
-  // @ForeignKey(() => UserLocation)
-  // @Column({
-  //   type: DataType.INTEGER,
-  //   allowNull: false,
-  // })
-  // locationId: number;
-
+  @ForeignKey(() => UserCountry)
   @Column({
-    type: DataType.TEXT,
-    allowNull: false,
+    type: DataType.INTEGER,
+    allowNull: true,
   })
-  shippingCode: string;
+  countryId: number;
 
   public static async seed() {
     const seedData: UserProfileSeedData[] = await BuildUserProfileSeedData();
