@@ -14,6 +14,8 @@ import { PetsModule } from './modules/pets/pets.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { SubscriptionsModule } from './modules/subscriptions/subscriptions.module';
 import { UsersModule } from './modules/users/users.module';
+import { PhotosModule } from './modules/photos/photos.module';
+import { VetsModule } from './modules/vets/vets.module';
 
 @Module({
   imports: [
@@ -29,6 +31,8 @@ import { UsersModule } from './modules/users/users.module';
     ScheduleModule.forRoot(),
     SubscriptionsModule,
     UsersModule,
+    PhotosModule,
+    VetsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
