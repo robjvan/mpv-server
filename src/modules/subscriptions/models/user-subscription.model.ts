@@ -5,7 +5,7 @@ import {
 } from './seeds/user-subscriptions.seed';
 
 @Table
-export class UserSubscription extends Model<UserSubscription> {
+export class UserSubscriptionModel extends Model<UserSubscriptionModel> {
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
@@ -47,11 +47,10 @@ export class UserSubscription extends Model<UserSubscription> {
     const seedData: UserSubscriptionSeedData[] =
       await BuildUserSubscriptionSeedData();
 
-    const UserSubscriptions: UserSubscription[] = [];
+    const UserSubscriptions: UserSubscriptionModel[] = [];
     for (const data of seedData) {
-      const userSubscription: UserSubscription = await UserSubscription.create(
-        data.userSubscription,
-      );
+      const userSubscription: UserSubscriptionModel =
+        await UserSubscriptionModel.create(data.userSubscription);
       UserSubscriptions.push(userSubscription);
     }
     return UserSubscriptions[0];

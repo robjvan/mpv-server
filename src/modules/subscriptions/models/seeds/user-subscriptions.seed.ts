@@ -1,7 +1,7 @@
-import { UserSubscription } from '../user-subscription.model';
+import { UserSubscriptionModel } from '../user-subscription.model';
 
 export type UserSubscriptionSeedData = {
-  userSubscription: Partial<UserSubscription>;
+  userSubscription: Partial<UserSubscriptionModel>;
 };
 
 export const BuildUserSubscriptionSeedData = async (): Promise<

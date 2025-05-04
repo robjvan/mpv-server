@@ -1,7 +1,7 @@
-import { UserPlatform } from '../user-platform.model';
+import { UserPlatformModel } from '../user-platform.model';
 
 export type UserPlatformSeedData = {
-  platform: Partial<UserPlatform>;
+  platform: Partial<UserPlatformModel>;
 };
 
 export const BuildUserPlatformSeedData = async (): Promise<

@@ -7,14 +7,14 @@ import {
 } from '@nestjs/common';
 import moment from 'moment';
 
-import { UserSubscription } from './models/user-subscription.model';
+import { UserSubscriptionModel } from './models/user-subscription.model';
 import { USER_SUBSCRIPTIONS_REPOSITORY } from 'src/utilities/constants';
 
 @Injectable()
 export class SubscriptionsService {
   constructor(
     @Inject(USER_SUBSCRIPTIONS_REPOSITORY)
-    private readonly userSubscriptionsRepo: typeof UserSubscription,
+    private readonly userSubscriptionsRepo: typeof UserSubscriptionModel,
   ) {}
   /** Logger instance scoped to SubscriptionsService for tracking and recording service-level operations and errors. */
   private logger: Logger = new Logger(SubscriptionsService.name);
@@ -38,13 +38,12 @@ export class SubscriptionsService {
   //   }
   // }
 
-  public async getSubscriptionById(id: number): Promise<UserSubscription> {
+  public async getSubscriptionById(id: number): Promise<UserSubscriptionModel> {
     try {
-      const result: UserSubscription = await this.userSubscriptionsRepo.findOne(
-        {
+      const result: UserSubscriptionModel =
+        await this.userSubscriptionsRepo.findOne({
           where: { id },
-        },
-      );
+        });
 
       if (!result) {
         throw new NotFoundException();
@@ -61,13 +60,12 @@ export class SubscriptionsService {
 
   public async getSubscriptionByUserId(
     userId: number,
-  ): Promise<UserSubscription> {
+  ): Promise<UserSubscriptionModel> {
     try {
-      const result: UserSubscription = await this.userSubscriptionsRepo.findOne(
-        {
+      const result: UserSubscriptionModel =
+        await this.userSubscriptionsRepo.findOne({
           where: { userId },
-        },
-      );
+        });
 
       if (!result) {
         throw new NotFoundException();
@@ -85,9 +83,9 @@ export class SubscriptionsService {
   public async updateSubscriptionTier(
     userId: number,
     newTier: number,
-  ): Promise<UserSubscription> {
+  ): Promise<UserSubscriptionModel> {
     try {
-      const subRecord: UserSubscription =
+      const subRecord: UserSubscriptionModel =
         await this.getSubscriptionByUserId(userId);
 
       const now: moment.Moment = moment();
@@ -123,10 +121,10 @@ export class SubscriptionsService {
 
   public async updateSubscriptionByUserId(
     userId: number,
-    data: Partial<UserSubscription>,
+    data: Partial<UserSubscriptionModel>,
   ) {
     try {
-      const subRecord: UserSubscription =
+      const subRecord: UserSubscriptionModel =
         await this.getSubscriptionByUserId(userId);
 
       return await subRecord.update(data);
