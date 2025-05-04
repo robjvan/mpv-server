@@ -13,6 +13,7 @@ import { UserPlatform } from '../users/models/user-platform.model';
 import { UserProfile } from '../users/models/user-profile.model';
 import { UserRole } from '../users/models/user-role.model';
 import { User } from '../users/models/user.model';
+import { UserCountry } from '../country/models/user-country.model';
 
 dotenv.config();
 
@@ -82,10 +83,10 @@ export const databaseProviders = [
           // logger.log('SeedDB = ' + seedDB);
 
           // Seed sample location data
-          // logger.verbose('Seeding sample location data...');
+          logger.verbose('Seeding sample location data...');
           // await safeSeed('Regions', Region.seed);
           // await safeSeed('Cities', City.seed);
-          // await safeSeed('Countries', Country.seed);
+          await safeSeed('Countries', UserCountry.seed);
           // await safeSeed('UserLocations', UserLocation.seed);
 
           // Seed sample user data
