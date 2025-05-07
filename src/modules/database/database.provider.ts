@@ -15,8 +15,17 @@ import { UserRoleModel } from '../users/models/user-role.model';
 import { UserModel } from '../users/models/user.model';
 import { CountryModel } from '../country/models/user-country.model';
 import { VetModel } from '../vets/models/vet.model';
+import { PetModel } from '../pets/models/pet.model';
+import { ActivityModel } from '../activity-tracking/models/activity.model';
+import { AppointmentModel } from '../appointments/models/appointment.model';
+import { DocumentModel } from '../documents/models/document.model';
+import { MedicationModel } from '../medications/models/medication.model';
+import { PetBreedModel } from '../pets/models/pet-breed.model';
+import { PetSpeciesModel } from '../pets/models/pet-species.model';
 
 dotenv.config();
+
+const logger: Logger = new Logger('DatabaseProvider');
 
 // Define databaseProviders array containing a provider object
 export const databaseProviders = [
@@ -43,10 +52,14 @@ export const databaseProviders = [
       // Add database models to the Sequelize instance
       sequelize.addModels([
         //! Add db models here
-        // City,
-        // Country,
+        ActivityModel,
+        AppointmentModel,
         CountryModel,
-        // UserLocation,
+        DocumentModel,
+        MedicationModel,
+        PetModel,
+        PetBreedModel,
+        PetSpeciesModel,
         // UserLoginRecord,
         UserModel,
         UserPlatformModel,
@@ -63,9 +76,8 @@ export const databaseProviders = [
         fn: (...args: any[]) => any,
         ...args: any[]
       ): any => {
-        // const logger: Logger = new Logger('S');
         try {
-          // logger.log(`Seeding ${type}`);
+          logger.debug(`Seeding ${type}`);
           return fn(...args);
         } catch (error) {
           console.error(`Error seeding ${type}`, error);
@@ -79,18 +91,13 @@ export const databaseProviders = [
 
       const seedDB: boolean = process.env.SEED_DB == 'true';
       if (seedDB) {
-        const logger: Logger = new Logger('DatabaseProvider');
-
         try {
           // Seeding happens here
           // logger.log('SeedDB = ' + seedDB);
 
           // Seed sample location data
           logger.verbose('Seeding sample location data...');
-          // await safeSeed('Regions', Region.seed);
-          // await safeSeed('Cities', City.seed);
           await safeSeed('Countries', CountryModel.seed);
-          // await safeSeed('UserLocations', UserLocation.seed);
 
           // Seed sample user data
           logger.verbose('Seeding sample user data...');
@@ -99,6 +106,14 @@ export const databaseProviders = [
           await safeSeed('Users', UserModel.seed);
           await safeSeed('UserSubscriptions', UserSubscriptionModel.seed);
           await safeSeed('UserProfiles', UserProfileModel.seed);
+
+          // Seed sample pet data
+          logger.verbose('Seeding sample pet data...');
+          await safeSeed('Pet Species', PetSpeciesModel.seed);
+          await safeSeed('Pet Breeds', PetBreedModel.seed);
+          await safeSeed('Pets', PetModel.seed);
+          // await safeSeed('Activity Entries', ActivityModel.seed);
+          // await safeSeed('Appointments', AppointmentModel.seed);
 
           logger.verbose('Seeding done!');
         } catch (err) {
