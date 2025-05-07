@@ -16,6 +16,10 @@ import { SubscriptionsModule } from './modules/subscriptions/subscriptions.modul
 import { UsersModule } from './modules/users/users.module';
 import { PhotosModule } from './modules/photos/photos.module';
 import { VetsModule } from './modules/vets/vets.module';
+import { HealthInsightsModule } from './modules/health-insights/health-insights.module';
+import { MedicationsModule } from './modules/medications/medications.module';
+import { BehaviourJournalModule } from './modules/behaviour-journal/behaviour-journal.module';
+import { ActivityTrackingModule } from './modules/activity-tracking/activity-tracking.module';
 
 @Module({
   imports: [
@@ -33,6 +37,10 @@ import { VetsModule } from './modules/vets/vets.module';
     UsersModule,
     PhotosModule,
     VetsModule,
+    HealthInsightsModule,
+    MedicationsModule,
+    BehaviourJournalModule,
+    ActivityTrackingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
