@@ -34,7 +34,7 @@ export class MedicationModel extends Model<MedicationModel> {
       'other',
     ),
   )
-  route: Enumerator;
+  route: string;
 
   // Text like "every 12 hours", "once a day", etc.
   @Column(DataType.TEXT)
